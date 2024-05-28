@@ -1,4 +1,4 @@
-# Final Project - Automation Testing : API Testing and Web Automation Testing with  Selenium with Java + Cucumber (BDD) Framework
+# API Testing and Web Automation Testing with Selenium with Java + Cucumber (BDD) Framework
 
 ## Author
 1. 211524010 | Fariz Muhamad Ibnu Hisyam | [@farizibnu](https://github.com/farizibnu)
