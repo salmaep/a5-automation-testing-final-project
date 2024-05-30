@@ -49,4 +49,9 @@ public class StepDefinitions {
     public void the_response_body_should_have_data_with_size(int size) {
         response.then().assertThat().body("data", hasSize(size));
     }
+
+    @Then("the response body should have id {string}")
+    public void the_response_body_should_have_id(String id) {
+        response.then().assertThat().body("id", equalTo(id));
+    }
 }

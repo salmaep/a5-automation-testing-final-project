@@ -2,13 +2,13 @@ Feature: Get User API Tests
 
   Scenario: Forbidden - App ID Missing
     Given the app-id is ""
-    When I send a DELETE request to "user/60d0fe4f5311236168a109ca"
+    When I send a GET request to "user/60d0fe4f5311236168a109ca"
     Then the response status code should be 403
     And the response body should have error "APP_ID_MISSING"
 
   Scenario: Forbidden - App ID Not Exist
     Given the app-id is "662e2e44bb70a7c4a12593f5"
-    When I send a DELETE request to "user/60d0fe4f5311236168a109ca"
+    When I send a GET request to "user/60d0fe4f5311236168a109ca"
     Then the response status code should be 403
     And the response body should have error "APP_ID_NOT_EXIST"
 
