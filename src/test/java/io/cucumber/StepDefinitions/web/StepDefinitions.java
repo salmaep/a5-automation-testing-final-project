@@ -12,6 +12,7 @@ import io.cucumber.pages.MenuPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +34,9 @@ public class StepDefinitions {
                 return "https://www.saucedemo.com/inventory.html";
             case "cart":
                 return "https://www.saucedemo.com/cart.html";
-            case "checkout information":
+            case "checkout":
+                return "https://www.saucedemo.com/checkout-step-one.html";
+            case "checkout-step-one":
                 return "https://www.saucedemo.com/checkout-step-one.html";
             case "checkout overview":
                 return "https://www.saucedemo.com/checkout-step-two.html";
@@ -153,6 +156,7 @@ public class StepDefinitions {
         String expectedUrl = getExpectedUrl(namepage);
         String currentUrl = driver.getCurrentUrl();
         assertEquals(expectedUrl, currentUrl);
+        cartPage = new CartPage(driver);
 
         if (namebutton.equalsIgnoreCase("shopping cart")) {
             dashboardPage.clickShoppingCart();
@@ -168,6 +172,34 @@ public class StepDefinitions {
 
     @And("the user does not fill in all fields on the checkout page")
     public void theUserDoesNotFillInAllFieldsOnTheCheckoutPage() {
+    }
+
+    // TEST
+    @Given("the user is logged in")
+    public void the_user_is_logged_in() {
+        driver = new ChromeDriver();
+        driver.get("https://www.saucedemo.com/");
+
+        loginPage = new LoginPage(driver);
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLoginButton();
+    }
+
+    @And("the user is on the Dashboard page")
+    public void the_user_is_on_the_dashboard_page() {
+        dashboardPage = new DashboardPage(driver);
+        Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"));
+    }
+
+    @And("the 'Add to Cart' button is displayed for 'Sauce Labs Backpack'")
+    public void the_add_to_cart_button_is_displayed_for_sauce_labs_backpack() {
+        Assert.assertTrue(dashboardPage.isAddToCartButtonDisplayed());
+    }
+
+    @When("the user clicks on the 'Add to Cart' button for 'Sauce Labs Backpack'")
+    public void the_user_clicks_on_add_to_cart_button_for_sauce_labs_backpack() {
+        dashboardPage.clickAddToCartButton();
     }
 
     @After

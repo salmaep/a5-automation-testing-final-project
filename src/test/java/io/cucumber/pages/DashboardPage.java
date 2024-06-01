@@ -19,11 +19,14 @@ public class DashboardPage {
     }
 
     public void clickShoppingCart() {
-        wait.until(ExpectedConditions.elementToBeClickable(locators.shoppingCartButton));
         locators.shoppingCartButton.click();
     }
 
     public void clickAddToCartButton() {
         locators.addToCartBackpackButton.click();
+    }
+
+    public boolean isAddToCartButtonDisplayed() {
+        return locators.addToCartButton.isDisplayed();
     }
 }

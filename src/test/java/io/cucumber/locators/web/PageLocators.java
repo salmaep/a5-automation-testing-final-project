@@ -35,16 +35,19 @@ public class PageLocators {
     @FindBy(xpath = "//button[@id='add-to-cart-sauce-labs-backpack']")
     public WebElement addToCartBackpackButton;
 
-    @FindBy(xpath = "//a[@id='shopping_cart_link']")
+    @FindBy(xpath = "//a[@class='shopping_cart_link']")
     public WebElement shoppingCartButton;
 
     // Find element in cart page
-    @FindBy(id = "checkout")
+    @FindBy(xpath = "//button[@data-test='checkout']")
     public WebElement checkoutButton;
 
     // Find element in checkout information page
     @FindBy(id = "cancel")
     public WebElement cancelButton;
+
+    @FindBy(xpath = "//button[@data-test='add-to-cart-sauce-labs-backpack']")
+    public WebElement addToCartButton;
 
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {

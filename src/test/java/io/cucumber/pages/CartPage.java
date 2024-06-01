@@ -19,7 +19,6 @@ public class CartPage {
     }
 
     public void clickCheckoutButton(){
-        wait.until(ExpectedConditions.elementToBeClickable(locators.checkoutButton));
         locators.checkoutButton.click();
     }
 
