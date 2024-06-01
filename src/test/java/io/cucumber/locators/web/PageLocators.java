@@ -31,6 +31,21 @@ public class PageLocators {
     @FindBy(id = "about_sidebar_link")
     public WebElement aboutMenu;
 
+    // Find element in dashboard page
+    @FindBy(xpath = "//button[@id='add-to-cart-sauce-labs-backpack']")
+    public WebElement addToCartBackpackButton;
+
+    @FindBy(xpath = "//a[@id='shopping_cart_link']")
+    public WebElement shoppingCartButton;
+
+    // Find element in cart page
+    @FindBy(id = "checkout")
+    public WebElement checkoutButton;
+
+    // Find element in checkout information page
+    @FindBy(id = "cancel")
+    public WebElement cancelButton;
+
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);

@@ -5,6 +5,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.pages.CartPage;
+import io.cucumber.pages.DashboardPage;
 import io.cucumber.pages.LoginPage;
 import io.cucumber.pages.MenuPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -17,7 +19,28 @@ public class StepDefinitions {
 
     private WebDriver driver;
     private LoginPage loginPage;
+    private DashboardPage dashboardPage;
     private MenuPage menuPage;
+    private CartPage cartPage;
+
+    public String getExpectedUrl(String pagename) {
+        switch (pagename.toLowerCase()) {
+            case "login":
+                return "https://www.saucedemo.com/";
+            case "about":
+                return "https://saucelabs.com/";
+            case "dashboard":
+                return "https://www.saucedemo.com/inventory.html";
+            case "cart":
+                return "https://www.saucedemo.com/cart.html";
+            case "checkout information":
+                return "https://www.saucedemo.com/checkout-step-one.html";
+            case "checkout overview":
+                return "https://www.saucedemo.com/checkout-step-two.html";
+            default:
+                throw new IllegalArgumentException("Invalid page name: " + pagename);
+        }
+    }
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
@@ -36,9 +59,18 @@ public class StepDefinitions {
         menuPage = new MenuPage(driver);
     }
 
-    @Given("the user is on the dashboard page")
-    public void the_user_is_on_the_dashboard_page() {
-        // Covered in previous step
+    @Given("the user is on the {string} page")
+    public void the_user_is_on_the_defined_page(String pagename) {
+        String currentUrl = driver.getCurrentUrl();
+        String expectedUrl = getExpectedUrl(pagename);
+        assertEquals(expectedUrl, currentUrl);
+    }
+
+    @Then("the user should be redirected to the {string} page")
+    public void the_user_should_be_redirected_to_the(String pagename) {
+        String currentUrl = driver.getCurrentUrl();
+        String expectedUrl = getExpectedUrl(pagename);
+        assertEquals(expectedUrl, currentUrl);
     }
 
     @When("I do not enter username and password")
@@ -110,27 +142,32 @@ public class StepDefinitions {
         menuPage.clickLogoutMenu();
     }
 
-    @Then("the user should be redirected to the {string} page")
-    public void the_user_should_be_redirected_to_the(String pagename) {
+    @Given("the user clicks on the Add to Cart button for Sauce Labs Backpack")
+    public void the_user_clicks_on_the_add_to_cart_button_for_sauce_labs_backpack() {
+        dashboardPage.clickAddToCartButton();
+    }
+
+
+    @When("the user clicks the {string} button on the {string} page")
+    public void theUserClicksTheButtonOnThePage(String namebutton, String namepage) {
+        String expectedUrl = getExpectedUrl(namepage);
         String currentUrl = driver.getCurrentUrl();
-        String expectedUrl;
-
-        // Menentukan URL yang diharapkan berdasarkan nama halaman
-        switch (pagename.toLowerCase()) {
-            case "login":
-                expectedUrl = "https://www.saucedemo.com/";
-                break;
-            case "inventory":
-                expectedUrl = "https://www.saucedemo.com/inventory.html";
-                break;
-            case "about":
-                expectedUrl = "https://saucelabs.com/";
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid page name: " + pagename);
-        }
-
         assertEquals(expectedUrl, currentUrl);
+
+        if (namebutton.equalsIgnoreCase("shopping cart")) {
+            dashboardPage.clickShoppingCart();
+        } else if (namebutton.equalsIgnoreCase("checkout")) {
+            cartPage.clickCheckoutButton();
+        } else if (namebutton.equalsIgnoreCase("cancel")) {
+            cartPage.clickCancelButton();
+        }
+        else {
+            throw new IllegalArgumentException("Invalid button name: " + namebutton);
+        }
+    }
+
+    @And("the user does not fill in all fields on the checkout page")
+    public void theUserDoesNotFillInAllFieldsOnTheCheckoutPage() {
     }
 
     @After
