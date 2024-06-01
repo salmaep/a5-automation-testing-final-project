@@ -25,8 +25,4 @@ public class DashboardPage {
     public void clickAddToCartButton() {
         locators.addToCartBackpackButton.click();
     }
-
-    public boolean isAddToCartButtonDisplayed() {
-        return locators.addToCartButton.isDisplayed();
-    }
 }

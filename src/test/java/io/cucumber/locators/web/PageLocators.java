@@ -46,8 +46,30 @@ public class PageLocators {
     @FindBy(id = "cancel")
     public WebElement cancelButton;
 
-    @FindBy(xpath = "//button[@data-test='add-to-cart-sauce-labs-backpack']")
-    public WebElement addToCartButton;
+    @FindBy(xpath = "//input[@id='first-name']")
+    public WebElement firstNameField;
+
+    @FindBy(xpath = "//input[@id='last-name']")
+    public WebElement lastNameField;
+
+    @FindBy(xpath = "//input[@id='postal-code']")
+    public WebElement postalCodeField;
+
+    // Find element in checkout overview
+    @FindBy(xpath = "//div[@data-test='item-quantity']")
+    public WebElement cartQuantity;
+
+    @FindBy(xpath = "//div[@data-test='inventory-item-name']")
+    public WebElement itemName;
+
+    @FindBy(xpath = "//div[@data-test='payment-info-value']")
+    public WebElement paymentInformation;
+
+    @FindBy(xpath = "//div[@data-test='shipping-info-value']")
+    public WebElement shippingInformation;
+
+    @FindBy(xpath = "//div[@data-test='summary_total_label']")
+    public WebElement priceTotal;
 
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
