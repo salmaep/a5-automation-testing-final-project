@@ -7,22 +7,18 @@ import org.openqa.selenium.WebDriver;
 
 public class PageLocators {
 
-    // Locators for LoginPage
-    @FindBy(id = "user-name")
-    public WebElement usernameField;
-
-    @FindBy(id = "password")
-    public WebElement passwordField;
-
-    @FindBy(id = "login-button")
-    public WebElement loginButton;
-
     @FindBy(xpath = "//h3[@data-test='error']")
     public WebElement errorMessage;
 
     // Locators for DashboardPage
     @FindBy(id = "react-burger-menu-btn")
     public WebElement menuIcon;
+
+    @FindBy(id = "inventory_sidebar_link")
+    public WebElement AllItemsMenu;
+
+    @FindBy(id = "about_sidebar_link")
+    public WebElement aboutMenu;
 
     @FindBy(id = "logout_sidebar_link")
     public WebElement logoutMenu;

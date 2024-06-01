@@ -22,10 +22,26 @@ public class DashboardPage {
         locators.menuIcon.click();
     }
 
+    public void clickAllItemsMenu() {
+        // Ensure the menu is opened before clicking logout
+        wait.until(ExpectedConditions.visibilityOf(locators.AllItemsMenu));
+        wait.until(ExpectedConditions.elementToBeClickable(locators.AllItemsMenu));
+        locators.AllItemsMenu.click();
+    }
+
+    public void clickAboutMenu() {
+        // Ensure the menu is opened before clicking logout
+        wait.until(ExpectedConditions.visibilityOf(locators.aboutMenu));
+        wait.until(ExpectedConditions.elementToBeClickable(locators.aboutMenu));
+        locators.aboutMenu.click();
+    }
+
     public void clickLogoutMenu() {
         // Ensure the menu is opened before clicking logout
         wait.until(ExpectedConditions.visibilityOf(locators.logoutMenu));
         wait.until(ExpectedConditions.elementToBeClickable(locators.logoutMenu));
         locators.logoutMenu.click();
     }
+
+
 }
