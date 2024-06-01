@@ -8,7 +8,7 @@ Feature: Checkout Feature Testing
     When the user clicks the "shopping cart" button on the "dashboard" page
     And the user is on the "cart" page
     And the user clicks the "checkout" button on the "cart" page
-    When the user is on the "checkout" page
+    When the user is on the "checkout information" page
     And the user does not fill in all fields on the checkout page
     And the user clicks the "cancel" button on the "checkout information" page
     Then the user should be redirected to the "cart" page
@@ -21,7 +21,7 @@ Feature: Checkout Feature Testing
     When the user clicks the "shopping cart" button on the "dashboard" page
     And the user is on the "cart" page
     And the user clicks the "checkout" button on the "cart" page
-    And the user is on the "checkout" page
+    And the user is on the "checkout information" page
     And the user enter "John" in the First Name field
     And the user enter "Doe" in the Last Name field
     And the user enter "40212" in the Postal Code field

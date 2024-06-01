@@ -15,7 +15,7 @@ public class CheckoutPage {
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
         this.locators = new PageLocators(driver);  // Initialize Page Locators
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(1));
     }
 
     public void enterFirstName(String firstname) {
@@ -49,6 +49,10 @@ public class CheckoutPage {
     public String getPriceTotal() {
         wait.until(ExpectedConditions.visibilityOf(locators.priceTotal));
         return locators.priceTotal.getText();
+    }
+
+    public void clickContinueButton() {
+        locators.continueButton.click();
     }
 
     public void enterPostalCode(String postalcode) {

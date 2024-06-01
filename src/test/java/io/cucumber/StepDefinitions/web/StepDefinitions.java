@@ -161,6 +161,8 @@ public class StepDefinitions {
             cartPage.clickCheckoutButton();
         } else if (namebutton.equalsIgnoreCase("cancel")) {
             cartPage.clickCancelButton();
+        } else if (namebutton.equalsIgnoreCase("continue")) {
+            checkoutPage.clickContinueButton();
         }
         else {
             throw new IllegalArgumentException("Invalid button name: " + namebutton);

@@ -68,8 +68,11 @@ public class PageLocators {
     @FindBy(xpath = "//div[@data-test='shipping-info-value']")
     public WebElement shippingInformation;
 
-    @FindBy(xpath = "//div[@data-test='summary_total_label']")
+    @FindBy(xpath = "//div[@data-test='total-label']")
     public WebElement priceTotal;
+
+    @FindBy(id = "continue")
+    public WebElement continueButton;
 
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
