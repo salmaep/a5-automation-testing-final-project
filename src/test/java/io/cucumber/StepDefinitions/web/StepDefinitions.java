@@ -5,8 +5,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.pages.DashboardPage;
 import io.cucumber.pages.LoginPage;
+import io.cucumber.pages.MenuPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +17,7 @@ public class StepDefinitions {
 
     private WebDriver driver;
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
+    private MenuPage menuPage;
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
@@ -33,7 +33,7 @@ public class StepDefinitions {
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         loginPage.clickLoginButton();
-        dashboardPage = new DashboardPage(driver);
+        menuPage = new MenuPage(driver);
     }
 
     @Given("the user is on the dashboard page")
@@ -92,22 +92,22 @@ public class StepDefinitions {
 
     @When("the user clicks the menu icon on the top left corner of the dashboard")
     public void the_user_clicks_the_menu_icon_on_the_top_left_corner_of_the_dashboard() {
-        dashboardPage.clickMenuIcon();
+        menuPage.clickMenuIcon();
     }
 
     @And("the user clicks the All Items menu")
     public void the_user_clicks_the_all_items_menu() {
-        dashboardPage.clickAllItemsMenu();
+        menuPage.clickAllItemsMenu();
     }
 
     @And("the user clicks the About menu")
     public void the_user_clicks_the_about_menu() {
-        dashboardPage.clickAboutMenu();
+        menuPage.clickAboutMenu();
     }
 
     @When("the user clicks the Logout menu")
     public void the_user_clicks_the_Logout_menu() {
-        dashboardPage.clickLogoutMenu();
+        menuPage.clickLogoutMenu();
     }
 
     @Then("the user should be redirected to the {string} page")
