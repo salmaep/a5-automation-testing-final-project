@@ -6,7 +6,7 @@ Feature: Detail Product
     When the user clicks the 'Add to cart' button
     Then the product should be added to the cart
     And the 'Add to cart' button should change to 'Remove'
-    And the cart should show the correct number of items
+    And the cart should show the correct number of items after add
 
   # Scenario test case 0.0.2
   Scenario: Remove 'Sauce Labs Backpack' from cart
@@ -15,7 +15,7 @@ Feature: Detail Product
     When the user clicks the 'Remove' button
     Then the product should be removed from the cart
     And the 'Remove' button should change to 'Add to cart'
-    And the cart should show the correct number of items
+    And the cart should show the correct number of items after remove
 
   # Scenario test case 0.0.3
   Scenario: Interaction with Cart Icon
