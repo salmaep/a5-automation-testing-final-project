@@ -1,7 +1,7 @@
 Feature: Create Data
 
   Scenario: Fill in all fields with all valid data
-    Given the app-id is "662e2649bb70a7601b259395"
+    Given the app-id is "665cbed88f0a740593d0c4af"
     And the Content-Type is "application/json"
     When I send a POST request to "user/create" with the following body:
       """
@@ -11,7 +11,7 @@ Feature: Create Data
           "lastName": "Doe",
           "picture": "https://randomuser.me/api/portraits/men/75.jpg",
           "gender": "male",
-          "email": "john_doe@gmail.com",
+          "email": "john_doe3@gmail.com",
           "dateOfBirth": "1990-01-01T00:00:00.000Z",
           "phone": "123456789",
           "location": {
@@ -33,7 +33,7 @@ Feature: Create Data
           "lastName": "Doe",
           "picture": "https://randomuser.me/api/portraits/men/75.jpg",
           "gender": "male",
-          "email": "john_doe@gmail.com",
+          "email": "john_doe3@gmail.com",
           "dateOfBirth": "1990-01-01T00:00:00.000Z",
           "phone": "123456789",
           "location": {
@@ -48,14 +48,14 @@ Feature: Create Data
     And the response body should have valid registerDate and updatedDate
 
   Scenario: just required
-    Given the app-id is "662e2649bb70a7601b259395"
+    Given the app-id is "665cbed88f0a740593d0c4af"
     And the Content-Type is "application/json"
     When I send a POST request to "user/create" with the following body:
       """
       {
           "firstName": "John",
           "lastName": "Doe",
-          "email": "john_doe_j@gmail.com"
+          "email": "john_doe_4@gmail.com"
       }
       """
     Then the response status code should be 200
@@ -66,14 +66,14 @@ Feature: Create Data
       {
           "firstName": "John",
           "lastName": "Doe",
-          "email": "john_doe_j@gmail.com"
+          "email": "john_doe_4@gmail.com"
       }
       """
     And the response body should have valid registerDate and updatedDate
 
 
   Scenario: Fill in all fields with data that already exists in the system
-    Given the app-id is "662e2649bb70a7601b259395"
+    Given the app-id is "665cbed88f0a740593d0c4af"
     And the Content-Type is "application/json"
     When I send a POST request to "user/create" with the following body:
       """

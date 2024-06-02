@@ -27,22 +27,32 @@ public class StepDefinitions {
 
     @And("the Content-Type is {string}")
     public void the_content_type_is(String contentType) {
-        given().contentType(ContentType.JSON);
+        if (contentType.equalsIgnoreCase("application/json")) {
+            given().contentType(ContentType.JSON);
+        } else {
+            given().contentType(contentType);
+        }
     }
 
     @When("I send a POST request to {string} with the following body:")
     public void i_send_a_post_request_to_with_the_following_body(String endpoint, String requestBody) {
         JSONObject jsonBody = new JSONObject(requestBody);
         this.endpoint = endpoint;
-        response = given()
-                .header("app-id", appId)
-                .contentType(ContentType.JSON)
-                .body(jsonBody.toString())
-                .when()
-                .post(BASE_URL + endpoint);
+        try {
+            response = given()
+                    .header("app-id", appId)
+                    .contentType(ContentType.JSON)
+                    .body(jsonBody.toString())
+                    .when()
+                    .post(BASE_URL + endpoint);
 
-        System.out.println("Request Body: " + jsonBody.toString());
-        System.out.println("Response Body: " + response.getBody().asString());
+            System.out.println("Request URL: " + BASE_URL + endpoint);
+            System.out.println("Request Body: " + jsonBody.toString());
+            System.out.println("Response Status Code: " + response.getStatusCode());
+            System.out.println("Response Body: " + response.getBody().asString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @When("I send a DELETE request to {string}")
