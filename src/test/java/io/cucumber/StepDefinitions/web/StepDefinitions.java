@@ -334,7 +334,7 @@ public class StepDefinitions {
 
     @Then("the cart should show the correct number of items after remove")
     public void the_cart_should_show_the_correct_number_of_items_after_remove() {
-        Assert.assertTrue(detailProductPage.isCartBadgeNotPresent());
+        assert(detailProductPage.getCartBadgeText().isEmpty());
     }
 
     @When("the user clicks the 'Add to cart' button")

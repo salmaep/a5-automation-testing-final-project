@@ -66,6 +66,16 @@ public class DetailProductPage {
             return true; 
         }
     }
+
+    public String getCartBadgeText() {
+        try {
+            return locators.cartBadge.getText();
+        } catch (Exception e) {
+            System.out.println("Elemen cartBadge tidak ditemukan.");
+            return "";
+        }
+    }
+
     public String getProductName() {
         return locators.productName.getText();
     }
