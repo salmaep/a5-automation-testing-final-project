@@ -59,11 +59,11 @@ public class DetailProductPage {
         return Integer.parseInt(itemCountText);
     }
 
-    public boolean isCartBadgePresent() {
+    public boolean isCartBadgeNotPresent() {
         try {
-            return locators.cartBadge.isDisplayed();
+            return !locators.shoppingCartBadge.isDisplayed();
         } catch (NoSuchElementException e) {
-            return false;
+            return true; 
         }
     }
     public String getProductName() {

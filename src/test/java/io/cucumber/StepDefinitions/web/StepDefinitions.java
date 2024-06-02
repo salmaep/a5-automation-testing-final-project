@@ -334,7 +334,7 @@ public class StepDefinitions {
 
     @Then("the cart should show the correct number of items after remove")
     public void the_cart_should_show_the_correct_number_of_items_after_remove() {
-        Assert.assertFalse(detailProductPage.isCartBadgePresent());
+        Assert.assertTrue(detailProductPage.isCartBadgeNotPresent());
     }
 
     @When("the user clicks the 'Add to cart' button")
@@ -379,12 +379,6 @@ public class StepDefinitions {
     public void the_add_to_cart_button_should_change_to_remove() {
         assertEquals("Remove", detailProductPage.getRemoveButtonText());
     }
-
-    // @Then("the cart should show the correct number of items")
-    // public void the_cart_should_show_the_correct_number_of_items() {
-    //     int expectedItemCount = detailProductPage.getExpectedCartItemCount();
-    //     assertEquals(expectedItemCount, detailProductPage.getActualCartItemCount());
-    // }
 
     @When("the user clicks the 'Remove' button")
     public void the_user_clicks_the_remove_button() {
