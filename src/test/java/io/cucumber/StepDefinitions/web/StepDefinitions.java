@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.pages.*;
-import io.cucumber.pages.DetailProductPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -347,7 +346,7 @@ public class StepDefinitions {
 
     @Then("the product should be removed from the cart")
     public void the_product_should_be_removed_from_the_cart() {
-        assertFalse(detailProductPage.isProductAddedToCart());
+        assertTrue(detailProductPage.addToCartDisplayed());
     }
 
     @Then("the 'Remove' button should change to 'Add to cart'")
@@ -379,7 +378,7 @@ public class StepDefinitions {
         assertEquals(expectedItemCount, detailProductPage.getActualCartItemCount());
     }
 
-    @Then("the system displays the cart page with 'Sauce Labs Backpack' listed")
+     @Then("the system displays the cart page with 'Sauce Labs Backpack' listed")
     public void the_system_displays_the_cart_page_with_sauce_labs_backpack_listed() {
         cartPage = new CartPage(driver);
         Assert.assertTrue(cartPage.isSauceLabsBackpackInCart());

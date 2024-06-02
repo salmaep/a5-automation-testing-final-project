@@ -30,7 +30,7 @@ public class DetailProductPage {
     }
 
     public void clickRemoveButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(locators.removeButton)).click();
+        locators.removeButtonDetailProduct.click();
     }
 
     public void clickCartIcon() {
@@ -38,7 +38,11 @@ public class DetailProductPage {
     }
 
     public boolean isProductAddedToCart() {
-        return locators.removeButton.isDisplayed();
+        return locators.removeButtonDetailProduct.isDisplayed();
+    }
+
+    public boolean addToCartDisplayed() {
+        return locators.addToCartButtonDetailProduct.isDisplayed();
     }
 
     public String getAddToCartButtonText() {
