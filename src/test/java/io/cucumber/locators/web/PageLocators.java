@@ -77,6 +77,19 @@ public class PageLocators {
     @FindBy(id = "continue")
     public WebElement continueButton;
 
+    @FindBy(id = "finish")
+    public WebElement finishButton;
+
+    // Find element in checkout complete
+    @FindBy(xpath = "//h2[@class='complete-header']")
+    public WebElement completeHeader;
+
+    @FindBy(xpath = "//div[@class='complete-text']")
+    public WebElement completeText;
+
+    @FindBy(id = "back-to-products")
+    public WebElement backToHomeButton;
+
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);

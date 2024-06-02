@@ -36,6 +36,8 @@ public class StepDefinitions {
                 return "https://www.saucedemo.com/checkout-step-one.html";
             case "checkout overview":
                 return "https://www.saucedemo.com/checkout-step-two.html";
+            case "checkout complete":
+                return "https://www.saucedemo.com/checkout-complete.html";
             default:
                 throw new IllegalArgumentException("Invalid page name: " + pagename);
         }
@@ -163,6 +165,10 @@ public class StepDefinitions {
             cartPage.clickCancelButton();
         } else if (namebutton.equalsIgnoreCase("continue")) {
             checkoutPage.clickContinueButton();
+        } else if (namebutton.equalsIgnoreCase("finish")) {
+            checkoutPage.clickFinishButton();
+        } else if (namebutton.equalsIgnoreCase("back home")) {
+            checkoutPage.clickBackToHomeButton();
         }
         else {
             throw new IllegalArgumentException("Invalid button name: " + namebutton);
@@ -231,6 +237,17 @@ public class StepDefinitions {
         assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 
+    @Then("the user should see the complete header message {string}")
+    public void the_user_should_see_the_complete_header_message(String expectedHeader) {
+        String actualHeader = checkoutPage.getCompleteHeaders();
+        assertEquals(expectedHeader, actualHeader);
+    }
+
+    @Then("the user should see the complete text message {string}")
+    public void the_user_should_see_the_complete_text_message(String expectedText) {
+        String actualText = checkoutPage.getCompleteText();
+        assertEquals(expectedText, actualText);
+    }
     @After
     public void tearDown() {
         if (driver != null) {
