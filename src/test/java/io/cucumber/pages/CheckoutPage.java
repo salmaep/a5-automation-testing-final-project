@@ -58,4 +58,10 @@ public class CheckoutPage {
     public void enterPostalCode(String postalcode) {
         locators.postalCodeField.sendKeys(postalcode);
     }
+
+    public String getErrorMessageCheckout(){
+        wait.until(ExpectedConditions.visibilityOf(locators.errorMessageCheckout));
+        return locators.errorMessageCheckout.getText();
+    }
+
 }

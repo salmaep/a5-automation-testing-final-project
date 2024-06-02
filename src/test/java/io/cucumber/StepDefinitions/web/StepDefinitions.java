@@ -224,6 +224,13 @@ public class StepDefinitions {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Then("the user should see a 'First name, Last name, and Postal code are required' error message")
+    public void the_user_should_see_required_fields_error_message() {
+        String expectedErrorMessage = "First name, Last name, and Postal code are required";
+        String actualErrorMessage = checkoutPage.getErrorMessageCheckout();
+        assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
+
     @After
     public void tearDown() {
         if (driver != null) {

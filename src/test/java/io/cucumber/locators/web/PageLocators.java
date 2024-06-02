@@ -55,6 +55,9 @@ public class PageLocators {
     @FindBy(xpath = "//input[@id='postal-code']")
     public WebElement postalCodeField;
 
+    @FindBy(xpath = "//h3[@data-test='error']")
+    public WebElement errorMessageCheckout;
+
     // Find element in checkout overview
     @FindBy(xpath = "//div[@data-test='item-quantity']")
     public WebElement cartQuantity;
