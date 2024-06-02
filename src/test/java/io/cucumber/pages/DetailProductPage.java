@@ -66,9 +66,24 @@ public class DetailProductPage {
             return false;
         }
     }
-    
+    public String getProductName() {
+        return locators.productName.getText();
+    }
 
+    public String getProductDescription() {
+        return locators.productDescription.getText();
+    }
+
+    public String getProductPrice() {
+        return locators.productPrice.getText();
+    }
+
+    public boolean isAddToCartButtonDisplayed() {
+        return locators.addToCartButton.isDisplayed();
+    }
+    
     public boolean isCartPageDisplayed() {
         return driver.getCurrentUrl().contains("cart.html");
     }
+
 }

@@ -21,7 +21,6 @@ public class StepDefinitions {
     private MenuPage menuPage;
     private CartPage cartPage;
     private CheckoutPage checkoutPage;
-    private ProductDetailPage productDetailPage;
 
     public String getExpectedUrl(String pagename) {
         switch (pagename.toLowerCase()) {
@@ -196,11 +195,11 @@ public class StepDefinitions {
 
     @Then("the product detail page is displayed with the details of 'Sauce Labs Backpack'")
     public void the_product_detail_page_is_displayed_with_the_details_of_sauce_labs_backpack() {
-        productDetailPage = new ProductDetailPage(driver);
-        Assert.assertEquals("Sauce Labs Backpack", productDetailPage.getProductName());
-        Assert.assertNotNull(productDetailPage.getProductDescription());
-        Assert.assertTrue(productDetailPage.getProductPrice().startsWith("$"));
-        Assert.assertTrue(productDetailPage.isAddToCartButtonDisplayed());
+        detailProductPage = new DetailProductPage(driver);
+        Assert.assertEquals("Sauce Labs Backpack", detailProductPage.getProductName());
+        Assert.assertNotNull(detailProductPage.getProductDescription());
+        Assert.assertTrue(detailProductPage.getProductPrice().startsWith("$"));
+        Assert.assertTrue(detailProductPage.isAddToCartButtonDisplayed());
 
         // Close the browser
         driver.quit();
@@ -381,6 +380,12 @@ public class StepDefinitions {
         assertEquals("Remove", detailProductPage.getRemoveButtonText());
     }
 
+    // @Then("the cart should show the correct number of items")
+    // public void the_cart_should_show_the_correct_number_of_items() {
+    //     int expectedItemCount = detailProductPage.getExpectedCartItemCount();
+    //     assertEquals(expectedItemCount, detailProductPage.getActualCartItemCount());
+    // }
+
     @When("the user clicks the 'Remove' button")
     public void the_user_clicks_the_remove_button() {
         detailProductPage.clickRemoveButton();
@@ -391,6 +396,11 @@ public class StepDefinitions {
         detailProductPage.clickCartIcon();
     }
 
+    @Then("the system displays the cart page with 'Sauce Labs Backpack' listed")
+    public void the_system_displays_the_cart_page_with_sauce_labs_backpack_listed() {
+        cartPage = new CartPage(driver);
+        Assert.assertTrue(cartPage.isSauceLabsBackpackInCart());
+    }
 
     @After
     public void tearDown() {
