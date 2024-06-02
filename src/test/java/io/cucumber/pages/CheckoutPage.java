@@ -26,6 +26,10 @@ public class CheckoutPage {
         locators.lastNameField.sendKeys(lastname);
     }
 
+    public void enterPostalCode(String postalcode) {
+        locators.postalCodeField.sendKeys(postalcode);
+    }
+
     public String getCartQuantity() {
         wait.until(ExpectedConditions.visibilityOf(locators.cartQuantity));
         return locators.cartQuantity.getText();
@@ -55,13 +59,27 @@ public class CheckoutPage {
         locators.continueButton.click();
     }
 
-    public void enterPostalCode(String postalcode) {
-        locators.postalCodeField.sendKeys(postalcode);
+    public void clickFinishButton() {
+        locators.finishButton.click();
+    }
+
+    public void clickBackToHomeButton() {
+        locators.backToHomeButton.click();
     }
 
     public String getErrorMessageCheckout(){
         wait.until(ExpectedConditions.visibilityOf(locators.errorMessageCheckout));
         return locators.errorMessageCheckout.getText();
+    }
+
+    public String getCompleteHeaders(){
+        wait.until(ExpectedConditions.visibilityOf(locators.completeHeader));
+        return locators.completeHeader.getText();
+    }
+
+    public String getCompleteText(){
+        wait.until(ExpectedConditions.visibilityOf(locators.completeText));
+        return locators.completeText.getText();
     }
 
 }
