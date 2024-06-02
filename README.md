@@ -17,6 +17,63 @@ Sebelum memulai, pastikan Anda memiliki perangkat lunak berikut yang terpasang d
 - JUnit: Untuk menjalankan dan mengelola pengujian.
 - WebDriverManager: Untuk mengelola driver browser secara otomatis.
 
+## Project Structure
+```
+a5-automation-testing-final-project
+├─ .git
+├─ .gitignore
+├─ .idea
+├─ pom.xml
+├─ README.md
+├─ src
+│  ├─ main
+│  │  └─ java
+│  │     └─ io
+│  │        └─ cucumber
+│  │           └─ Main.java
+│  └─ test
+│     ├─ java
+│     │  └─ io
+│     │     └─ cucumber
+│     │        ├─ locators
+│     │        │  ├─ api
+│     │        │  │  └─ PageLocators.java
+│     │        │  └─ web
+│     │        │     └─ PageLocators.java
+│     │        ├─ pages
+│     │        │  ├─ CartPage.java
+│     │        │  ├─ CheckoutPage.java
+│     │        │  ├─ DashboardPage.java
+│     │        │  ├─ DetailProductPage.java
+│     │        │  ├─ LoginPage.java
+│     │        │  ├─ MenuPage.java
+│     │        │  └─ ProductDetailPage.java
+│     │        ├─ StepDefinitions
+│     │        │  ├─ api
+│     │        │  │  └─ StepDefinitions.java
+│     │        │  └─ web
+│     │        │     └─ StepDefinitions.java
+│     │        └─ TestRunner
+│     │           └─ TestRunner.java
+│     └─ resources
+│        ├─ apiFeatures
+│        │  ├─ CreateUser.feature
+│        │  ├─ DeleteUser.feature
+│        │  ├─ GetUser.feature
+│        │  └─ UpdateUser.feature
+│        ├─ cucumber.properties
+│        └─ webFeatures
+│           ├─ cart_test.feature
+│           ├─ checkout_test.feature
+│           ├─ dashboard_test.feature
+│           ├─ detailProduct_test.feature
+│           ├─ endToEnd_test.feature
+│           ├─ login_test.feature
+│           └─ menu_test.feature
+└─ testreport
+   └─ test-reports.html
+```
+
 ## How to Run the Tests
 1. Clone repository ini melalui git bash, dengan menjalankan perintah berikut
    ```
