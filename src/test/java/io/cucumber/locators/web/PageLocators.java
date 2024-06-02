@@ -90,9 +90,6 @@ public class PageLocators {
     @FindBy(id = "back-to-products")
     public WebElement backToHomeButton;
 
-    @FindBy(id = "item_4_img_link")
-    public WebElement sauceLabsBackpackImage;
-
     @FindBy(className = "inventory_details_name")
     public WebElement productName;
 
@@ -123,10 +120,10 @@ public class PageLocators {
     public WebElement sauceLabsBackpackImage;
 
     @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory' and @data-test='add-to-cart']\n")
-    public WebElement addToCartButton;
+    public WebElement addToCartButtonDetailProduct;
 
     @FindBy(xpath = "//button[@class='btn btn_secondary btn_small btn_inventory' and @data-test='remove']\n")
-    public WebElement removeButton;
+    public WebElement removeButtonDetailProduct;
 
     @FindBy(xpath = "//span[@data-test='shopping-cart-badge']")
     public WebElement cartItemCountElement;

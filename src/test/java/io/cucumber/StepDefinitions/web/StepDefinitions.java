@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.pages.*;
-import io.cucumber.pages.DetailProductPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -329,6 +328,16 @@ public class StepDefinitions {
         Assert.assertFalse(cartPage.isProductPresent());
     }
 
+    @Then("the cart should show the correct number of items after add")
+    public void the_cart_should_show_the_correct_number_of_items_after_add() {
+        assertEquals(1, detailProductPage.getActualCartItemCount());
+    }
+
+    @Then("the cart should show the correct number of items after remove")
+    public void the_cart_should_show_the_correct_number_of_items_after_remove() {
+        Assert.assertFalse(detailProductPage.isCartBadgePresent());
+    }
+
     @When("the user clicks the 'Add to cart' button")
     public void the_user_clicks_the_add_to_cart_button() {
         detailProductPage.clickAddToCartButton();
@@ -347,14 +356,13 @@ public class StepDefinitions {
 
     @Then("the product should be removed from the cart")
     public void the_product_should_be_removed_from_the_cart() {
-        assertFalse(detailProductPage.isProductAddedToCart());
+        assertTrue(detailProductPage.addToCartDisplayed());
     }
 
     @Then("the 'Remove' button should change to 'Add to cart'")
     public void the_remove_button_should_change_to_add_to_cart() {
         assertEquals("Add to cart", detailProductPage.getAddToCartButtonText());
     }
-
 
     @Then("the system displays the Cart page containing the products the user want to buy")
     public void the_system_displays_the_cart_page_containing_the_products_the_user_want_to_buy() {
@@ -373,17 +381,10 @@ public class StepDefinitions {
         assertEquals("Remove", detailProductPage.getRemoveButtonText());
     }
 
-    @Then("the cart should show the correct number of items")
-    public void the_cart_should_show_the_correct_number_of_items() {
-        int expectedItemCount = detailProductPage.getExpectedCartItemCount();
-        assertEquals(expectedItemCount, detailProductPage.getActualCartItemCount());
-    }
-
     @When("the user clicks the 'Remove' button")
     public void the_user_clicks_the_remove_button() {
         detailProductPage.clickRemoveButton();
     }
-
 
     @When("the user press the Cart Icon located at the top right corner")
     public void the_user_press_the_cart_icon_located_at_the_top_right_corner() {
