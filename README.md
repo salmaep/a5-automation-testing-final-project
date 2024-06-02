@@ -1,6 +1,8 @@
 # API Testing and Web Automation Testing with Selenium with Java + Cucumber (BDD) Framework
 Project ini bertujuan untuk melakukan pengujian API Testing pada DummyAPI.io dan Web Automation Testing pada Swag Labs. 
+## API Testing User Controller
 DummyAPI.io adalah sumber data API yang digunakan untuk pengujian. DummyAPI menyediakan data dummy yang dapat digunakan untuk mengembangkan, menguji, atau mendemonstrasikan fungsionalitas aplikasi tanpa harus terhubung ke sumber data yang sebenarnya. 
+## Web Testing Aplikasi Swag Labs
 Program pengujian otomatis pada website Swag Labs (https://www.saucedemo.com/) pada fitur login, dashboard, detail product, menu, cart, dan checkout. Pengujian ini menggunakan framework BDD (Behavior Driven Development) yang menggabungkan Selenium dengan Java dan Cucumber. Dengan framework ini, pengujian dilakukan berdasarkan skenario yang ditulis dalam bahasa alami yang mudah dipahami oleh semua pemangku kepentingan.
 
 ## Prerequisites
