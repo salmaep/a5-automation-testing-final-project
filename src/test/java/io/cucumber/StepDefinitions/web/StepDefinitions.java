@@ -379,6 +379,12 @@ public class StepDefinitions {
         assertEquals(expectedItemCount, detailProductPage.getActualCartItemCount());
     }
 
+    @Then("the system displays the cart page with 'Sauce Labs Backpack' listed")
+    public void the_system_displays_the_cart_page_with_sauce_labs_backpack_listed() {
+        cartPage = new CartPage(driver);
+        Assert.assertTrue(cartPage.isSauceLabsBackpackInCart());
+    }
+
     @When("the user clicks the 'Remove' button")
     public void the_user_clicks_the_remove_button() {
         detailProductPage.clickRemoveButton();

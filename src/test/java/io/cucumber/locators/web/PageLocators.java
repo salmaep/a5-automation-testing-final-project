@@ -118,15 +118,9 @@ public class PageLocators {
     @FindBy(xpath = "//button[@data-test='continue-shopping']")
     public WebElement continueShoppingButton;
 
-    // Locator for Sauce Labs Backpack image
-    @FindBy(xpath = "//img[@data-test='inventory-item-sauce-labs-backpack-img']")
-    public WebElement sauceLabsBackpackImage;
-
-    @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory' and @data-test='add-to-cart']\n")
-    public WebElement addToCartButton;
-
-    @FindBy(xpath = "//button[@class='btn btn_secondary btn_small btn_inventory' and @data-test='remove']\n")
-    public WebElement removeButton;
+    // Locator for 'Sauce Labs Backpack' in cart
+    @FindBy(xpath = "//div[text()='Sauce Labs Backpack']")
+    public WebElement sauceLabsBackpackCartItem;
 
     @FindBy(xpath = "//span[@data-test='shopping-cart-badge']")
     public WebElement cartItemCountElement;

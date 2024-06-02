@@ -40,4 +40,12 @@ public class CartPage {
         locators.cancelButton.click();
     }
 
+    public boolean isSauceLabsBackpackInCart() {
+        try {
+            return locators.sauceLabsBackpackCartItem.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }
