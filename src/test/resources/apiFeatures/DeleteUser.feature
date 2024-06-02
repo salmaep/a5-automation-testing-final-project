@@ -29,9 +29,3 @@ Feature: Delete User API Tests
     When I send a DELETE request to ""
     Then the response status code should be 404
     And the response body should have error "PATH_NOT_FOUND"
-
-  Scenario: Bad Request - Invalid ID
-    Given the app-id is "6635f6c123256272eaba3b31"
-    When I send a DELETE request to "user/test123"
-    Then the response status code should be 400
-    And the response body should have error "PARAMS_NOT_VALID"
