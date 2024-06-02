@@ -25,4 +25,28 @@ public class DashboardPage {
     public void clickAddToCartButton() {
         locators.addToCartBackpackButton.click();
     }
+
+    public void clickSauceLabsBackpackImage() {
+        locators.sauceLabsBackpackImage.click();
+    }
+
+    public boolean isAddToCartButtonDisplayed() {
+        return locators.addToCartButton.isDisplayed();
+    }
+
+    public boolean isCartButtonEmpty() {
+        return locators.CartEmptyButton.isDisplayed();
+    }
+
+    public boolean isRemoveButtonDisplayed() {
+        return locators.removeButton.isDisplayed();
+    }
+
+    public String getCartBadgeText() {
+        return locators.cartBadge.getText();
+    }
+
+    public void clickRemoveButton() {
+        locators.removeButton.click();
+    }
 }

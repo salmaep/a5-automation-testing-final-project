@@ -18,6 +18,18 @@ public class CheckoutPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(1));
     }
 
+    public boolean isFirstNameFieldDisplayed() {
+        return locators.firstNameField.isDisplayed();
+    }
+
+    public boolean isLastNameFieldDisplayed() {
+        return locators.lastNameField.isDisplayed();
+    }
+
+    public boolean isPostalCodeFieldDisplayed() {
+        return locators.postalCodeField.isDisplayed();
+    }
+
     public void enterFirstName(String firstname) {
         locators.firstNameField.sendKeys(firstname);
     }

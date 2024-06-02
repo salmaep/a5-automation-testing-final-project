@@ -21,6 +21,7 @@ public class StepDefinitions {
     private MenuPage menuPage;
     private CartPage cartPage;
     private CheckoutPage checkoutPage;
+    private ProductDetailPage productDetailPage;
 
     public String getExpectedUrl(String pagename) {
         switch (pagename.toLowerCase()) {
@@ -169,6 +170,8 @@ public class StepDefinitions {
             checkoutPage.clickFinishButton();
         } else if (namebutton.equalsIgnoreCase("back home")) {
             checkoutPage.clickBackToHomeButton();
+        } else if (namebutton.equalsIgnoreCase("continue shopping")) {
+            cartPage.clickContinueShoppingButton();
         }
         else {
             throw new IllegalArgumentException("Invalid button name: " + namebutton);
@@ -185,9 +188,71 @@ public class StepDefinitions {
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"));
     }
 
+    @When("the user clicks on the 'Sauce Labs Backpack' product image")
+    public void the_user_clicks_on_the_sauce_labs_backpack_product_image() {
+        dashboardPage.clickSauceLabsBackpackImage();
+    }
+
+    @Then("the product detail page is displayed with the details of 'Sauce Labs Backpack'")
+    public void the_product_detail_page_is_displayed_with_the_details_of_sauce_labs_backpack() {
+        productDetailPage = new ProductDetailPage(driver);
+        Assert.assertEquals("Sauce Labs Backpack", productDetailPage.getProductName());
+        Assert.assertNotNull(productDetailPage.getProductDescription());
+        Assert.assertTrue(productDetailPage.getProductPrice().startsWith("$"));
+        Assert.assertTrue(productDetailPage.isAddToCartButtonDisplayed());
+
+        // Close the browser
+        driver.quit();
+    }
+
+    @And("the 'Add to Cart' button is displayed for 'Sauce Labs Backpack'")
+    public void the_add_to_cart_button_is_displayed_for_sauce_labs_backpack() {
+        Assert.assertTrue(dashboardPage.isAddToCartButtonDisplayed());
+    }
+
+    @Then("the button changes to 'Remove'")
+    public void the_button_changes_to_remove() {
+        Assert.assertTrue(dashboardPage.isRemoveButtonDisplayed());
+    }
+
+    @And("'Sauce Labs Backpack' is added to the cart")
+    public void sauce_labs_backpack_is_added_to_the_cart() {
+        Assert.assertEquals("1", dashboardPage.getCartBadgeText());
+    }
+
+    @And("the cart icon shows the correct number of items")
+    public void the_cart_icon_shows_the_correct_number_of_items() {
+        Assert.assertEquals("1", dashboardPage.getCartBadgeText());
+    }
+
+    @And("the 'Remove' button is displayed for 'Sauce Labs Backpack'")
+    public void the_remove_button_is_displayed_for_sauce_labs_backpack() {
+        Assert.assertTrue(dashboardPage.isRemoveButtonDisplayed());
+    }
+
+    @When("the user clicks on the 'Remove' button for 'Sauce Labs Backpack'")
+    public void the_user_clicks_on_the_remove_button_for_sauce_labs_backpack() {
+        dashboardPage.clickRemoveButton();
+    }
+
+    @Then("the button changes to 'Add to Cart'")
+    public void the_button_changes_to_add_to_cart() {
+        Assert.assertTrue(dashboardPage.isAddToCartButtonDisplayed());
+    }
+
+    @And("'Sauce Labs Backpack' is removed from the cart")
+    public void sauce_labs_backpack_is_removed_from_the_cart() {
+        Assert.assertTrue(dashboardPage.isAddToCartButtonDisplayed());
+    }
+
     @When("the user clicks on the 'Add to Cart' button for 'Sauce Labs Backpack'")
     public void the_user_clicks_on_add_to_cart_button_for_sauce_labs_backpack() {
         dashboardPage.clickAddToCartButton();
+    }
+
+    @And("the cart icon doesn't have an item")
+    public void theCartIconDoesnTHaveAnItem() {
+        Assert.assertTrue(dashboardPage.isCartButtonEmpty());
     }
 
     @And("the user enter {string} in the First Name field")
@@ -248,6 +313,20 @@ public class StepDefinitions {
         String actualText = checkoutPage.getCompleteText();
         assertEquals(expectedText, actualText);
     }
+
+    @Then("the system displays the Checkout Information page with first name, last name, and zip&postal code fields")
+    public void the_system_displays_the_checkout_information_page_with_first_name_last_name_and_zip_postal_code_fields() {
+        Assert.assertTrue(checkoutPage.isFirstNameFieldDisplayed());
+        Assert.assertTrue(checkoutPage.isLastNameFieldDisplayed());
+        Assert.assertTrue(checkoutPage.isPostalCodeFieldDisplayed());
+    }
+
+    @Then("the system displays the cart page with no products since no products have been added to the cart")
+    public void the_system_displays_the_cart_page_with_no_products_since_no_products_have_been_added_to_the_cart() {
+        cartPage = new CartPage(driver);
+        Assert.assertFalse(cartPage.isProductPresent());
+    }
+
     @After
     public void tearDown() {
         if (driver != null) {
