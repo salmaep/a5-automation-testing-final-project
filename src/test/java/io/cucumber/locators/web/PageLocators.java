@@ -90,6 +90,34 @@ public class PageLocators {
     @FindBy(id = "back-to-products")
     public WebElement backToHomeButton;
 
+    @FindBy(id = "item_4_img_link")
+    public WebElement sauceLabsBackpackImage;
+
+    @FindBy(className = "inventory_details_name")
+    public WebElement productName;
+
+    @FindBy(className = "inventory_details_desc")
+    public WebElement productDescription;
+
+    @FindBy(className = "inventory_details_price")
+    public WebElement productPrice;
+
+    @FindBy(className = "btn_inventory")
+    public WebElement addToCartButton;
+
+    @FindBy(xpath = "//button[@id='remove-sauce-labs-backpack']")
+    public WebElement removeButton;
+
+    @FindBy(className = "shopping_cart_link")
+    public WebElement CartEmptyButton;
+
+    @FindBy(className = "shopping_cart_badge")
+    public WebElement cartBadge;
+
+    // Find element in cart
+    @FindBy(xpath = "//button[@data-test='continue-shopping']")
+    public WebElement continueShoppingButton;
+
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);
