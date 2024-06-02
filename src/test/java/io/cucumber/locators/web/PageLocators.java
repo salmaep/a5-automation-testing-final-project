@@ -118,6 +118,22 @@ public class PageLocators {
     @FindBy(xpath = "//button[@data-test='continue-shopping']")
     public WebElement continueShoppingButton;
 
+    // Locator for Sauce Labs Backpack image
+    @FindBy(xpath = "//img[@data-test='inventory-item-sauce-labs-backpack-img']")
+    public WebElement sauceLabsBackpackImage;
+
+    @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory' and @data-test='add-to-cart']\n")
+    public WebElement addToCartButton;
+
+    @FindBy(xpath = "//button[@class='btn btn_secondary btn_small btn_inventory' and @data-test='remove']\n")
+    public WebElement removeButton;
+
+    @FindBy(xpath = "//span[@data-test='shopping-cart-badge']")
+    public WebElement cartItemCountElement;
+
+    @FindBy(xpath = "//a[@class='shopping_cart_link' and @data-test='shopping-cart-link']")
+    public WebElement cartIcon;
+
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);

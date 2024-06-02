@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.matchesPattern;
 
 public class StepDefinitions {
     private static final String BASE_URL = "https://dummyapi.io/data/v1/";
@@ -29,12 +30,29 @@ public class StepDefinitions {
         given().contentType(ContentType.JSON);
     }
 
+    @When("I send a POST request to {string} with the following body:")
+    public void i_send_a_post_request_to_with_the_following_body(String endpoint, String requestBody) {
+        JSONObject jsonBody = new JSONObject(requestBody);
+        this.endpoint = endpoint;
+        response = given()
+                .header("app-id", appId)
+                .contentType(ContentType.JSON)
+                .body(jsonBody.toString())
+                .when()
+                .post(BASE_URL + endpoint);
+
+        System.out.println("Request Body: " + jsonBody.toString());
+        System.out.println("Response Body: " + response.getBody().asString());
+    }
+
     @When("I send a DELETE request to {string}")
     public void i_send_a_delete_request_to(String endpoint) {
         response = given()
                 .header("app-id", appId)
                 .when()
                 .delete(BASE_URL + endpoint);
+
+        System.out.println("Response Body: " + response.getBody().asString());
     }
 
     @When("I send a GET request to {string}")
@@ -43,6 +61,8 @@ public class StepDefinitions {
                 .header("app-id", appId)
                 .when()
                 .get(BASE_URL + endpoint);
+
+        System.out.println("Response Body: " + response.getBody().asString());
     }
 
     @When("I send a PUT request to {string}")
@@ -60,7 +80,11 @@ public class StepDefinitions {
                 .body(requestBody.toString())
                 .when()
                 .put(BASE_URL + endpoint);
+
+        System.out.println("Request Body: " + requestBody.toString());
+        System.out.println("Response Body: " + response.getBody().asString());
     }
+
     @Then("the {string} should be {string}")
     public void the_attribute_should_be(String attribute, String value) {
         response.then().assertThat().body(attribute, equalTo(value));
@@ -68,7 +92,12 @@ public class StepDefinitions {
 
     @Then("the response status code should be {int}")
     public void the_response_status_code_should_be(int statusCode) {
-        response.then().assertThat().statusCode(statusCode);
+        try {
+            response.then().assertThat().statusCode(statusCode);
+        } catch (AssertionError e) {
+            System.out.println("Response Body: " + response.getBody().asString());
+            throw e;
+        }
     }
 
     @Then("the response body should have error {string}")
@@ -84,5 +113,32 @@ public class StepDefinitions {
     @Then("the response body should have id {string}")
     public void the_response_body_should_have_id(String id) {
         response.then().assertThat().body("id", equalTo(id));
+    }
+
+    @And("the response body should contain the following:")
+    public void the_response_body_should_contain_the_following(String expectedResponseBody) {
+        JSONObject expectedJsonBody = new JSONObject(expectedResponseBody);
+        for (String key : expectedJsonBody.keySet()) {
+            if (expectedJsonBody.get(key) instanceof JSONObject) {
+                for (String subKey : ((JSONObject) expectedJsonBody.get(key)).keySet()) {
+                    response.then().assertThat().body(key + "." + subKey, equalTo(((JSONObject) expectedJsonBody.get(key)).get(subKey)));
+                }
+            } else {
+                response.then().assertThat().body(key, equalTo(expectedJsonBody.get(key)));
+            }
+        }
+    }
+
+    @And("the response body should have valid registerDate and updatedDate")
+    public void the_response_body_should_have_valid_registerDate_and_updatedDate() {
+        String datePattern = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z";
+        response.then().assertThat().body("registerDate", matchesPattern(datePattern));
+        response.then().assertThat().body("updatedDate", matchesPattern(datePattern));
+    }
+
+    @And("the response body should have a valid id")
+    public void the_response_body_should_have_a_valid_id() {
+        String idPattern = "[a-f0-9]{24}";
+        response.then().assertThat().body("id", matchesPattern(idPattern));
     }
 }
