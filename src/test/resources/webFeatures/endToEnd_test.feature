@@ -11,6 +11,7 @@ to checkout starting from clicking the "Continue" button on the cart page.
     And the user clicks on the 'Add to Cart' button for 'Sauce Labs Backpack'
     When the user clicks the "shopping cart" button on the "dashboard" page
     And the user is on the "cart" page
+    And the system displays the cart page with 'Sauce Labs Backpack' listed
     And the user clicks the "checkout" button on the "cart" page
     And the user is on the "checkout information" page
     And the user enter "John" in the First Name field
