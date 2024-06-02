@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.NoSuchElementException;
 
 import java.time.Duration;
 
@@ -26,11 +27,11 @@ public class DetailProductPage {
     }
 
     public void clickAddToCartButton() {
-        locators.addToCartButton.click();
+        locators.addToCartButtonDetailProduct.click();
     }
 
     public void clickRemoveButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(locators.removeButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(locators.removeButtonDetailProduct)).click();
     }
 
     public void clickCartIcon() {
@@ -38,19 +39,19 @@ public class DetailProductPage {
     }
 
     public boolean isProductAddedToCart() {
-        return locators.removeButton.isDisplayed();
+        return locators.removeButtonDetailProduct.isDisplayed();
+    }
+
+    public boolean addToCartDisplayed() {
+        return locators.addToCartButtonDetailProduct.isDisplayed();
     }
 
     public String getAddToCartButtonText() {
-        return locators.addToCartButton.getText();
+        return locators.addToCartButtonDetailProduct.getText();
     }
 
     public String getRemoveButtonText() {
-        return locators.removeButton.getText();
-    }
-
-    public int getExpectedCartItemCount() {
-        return 1;
+        return locators.removeButtonDetailProduct.getText();
     }
 
     public int getActualCartItemCount() {
@@ -58,7 +59,31 @@ public class DetailProductPage {
         return Integer.parseInt(itemCountText);
     }
 
+    public boolean isCartBadgePresent() {
+        try {
+            return locators.cartBadge.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    public String getProductName() {
+        return locators.productName.getText();
+    }
+
+    public String getProductDescription() {
+        return locators.productDescription.getText();
+    }
+
+    public String getProductPrice() {
+        return locators.productPrice.getText();
+    }
+
+    public boolean isAddToCartButtonDisplayed() {
+        return locators.addToCartButton.isDisplayed();
+    }
+    
     public boolean isCartPageDisplayed() {
         return driver.getCurrentUrl().contains("cart.html");
     }
+
 }
