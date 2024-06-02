@@ -4,6 +4,7 @@ import io.cucumber.locators.web.PageLocators;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class DashboardPage {
@@ -17,31 +18,35 @@ public class DashboardPage {
         this.locators = new PageLocators(driver);  // Initialize Page Locators
     }
 
-    public void clickMenuIcon() {
-        wait.until(ExpectedConditions.elementToBeClickable(locators.menuIcon));
-        locators.menuIcon.click();
+    public void clickShoppingCart() {
+        locators.shoppingCartButton.click();
     }
 
-    public void clickAllItemsMenu() {
-        // Ensure the menu is opened before clicking logout
-        wait.until(ExpectedConditions.visibilityOf(locators.AllItemsMenu));
-        wait.until(ExpectedConditions.elementToBeClickable(locators.AllItemsMenu));
-        locators.AllItemsMenu.click();
+    public void clickAddToCartButton() {
+        locators.addToCartBackpackButton.click();
     }
 
-    public void clickAboutMenu() {
-        // Ensure the menu is opened before clicking logout
-        wait.until(ExpectedConditions.visibilityOf(locators.aboutMenu));
-        wait.until(ExpectedConditions.elementToBeClickable(locators.aboutMenu));
-        locators.aboutMenu.click();
+    public void clickSauceLabsBackpackImage() {
+        locators.sauceLabsBackpackImage.click();
     }
 
-    public void clickLogoutMenu() {
-        // Ensure the menu is opened before clicking logout
-        wait.until(ExpectedConditions.visibilityOf(locators.logoutMenu));
-        wait.until(ExpectedConditions.elementToBeClickable(locators.logoutMenu));
-        locators.logoutMenu.click();
+    public boolean isAddToCartButtonDisplayed() {
+        return locators.addToCartButton.isDisplayed();
     }
 
+    public boolean isCartButtonEmpty() {
+        return locators.CartEmptyButton.isDisplayed();
+    }
 
+    public boolean isRemoveButtonDisplayed() {
+        return locators.removeButton.isDisplayed();
+    }
+
+    public String getCartBadgeText() {
+        return locators.cartBadge.getText();
+    }
+
+    public void clickRemoveButton() {
+        locators.removeButton.click();
+    }
 }
