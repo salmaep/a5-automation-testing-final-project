@@ -59,13 +59,23 @@ public class DetailProductPage {
         return Integer.parseInt(itemCountText);
     }
 
-    public boolean isCartBadgePresent() {
+    public boolean isCartBadgeNotPresent() {
         try {
-            return locators.cartBadge.isDisplayed();
+            return !locators.shoppingCartBadge.isDisplayed();
         } catch (NoSuchElementException e) {
-            return false;
+            return true; 
         }
     }
+
+    public String getCartBadgeText() {
+        try {
+            return locators.cartBadge.getText();
+        } catch (Exception e) {
+            System.out.println("Elemen cartBadge tidak ditemukan.");
+            return "";
+        }
+    }
+
     public String getProductName() {
         return locators.productName.getText();
     }

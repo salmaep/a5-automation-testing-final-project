@@ -134,6 +134,9 @@ public class PageLocators {
     @FindBy(xpath = "//div[text()='Sauce Labs Backpack']")
     public WebElement sauceLabsBackpackCartItem;
 
+    @FindBy(xpath = "//span[@class='shopping_cart_badge' and @data-test='shopping-cart-badge']")
+    public WebElement shoppingCartBadge;
+
     // Constructor to initialize elements
     public PageLocators(WebDriver driver) {
         PageFactory.initElements(driver, this);
