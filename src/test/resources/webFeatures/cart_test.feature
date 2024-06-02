@@ -7,6 +7,7 @@ Feature: Cart Page Testing
     And the user clicks on the 'Add to Cart' button for 'Sauce Labs Backpack'
     When the user clicks the "shopping cart" button on the "dashboard" page
     And the user is on the "cart" page
+    And the system displays the cart page with 'Sauce Labs Backpack' listed
     And the user clicks the "checkout" button on the "cart" page
     Then the system displays the Checkout Information page with first name, last name, and zip&postal code fields
 
